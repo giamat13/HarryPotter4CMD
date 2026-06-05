@@ -1,0 +1,14 @@
+{
+  "reparo": {
+    "file": "spells/reparo.py",
+    "description": "Fix Windows files (sfc /scannow)"
+  },
+  "avadakedavra": {
+    "file": "spells/avadakedavra.py",
+    "description": "Shutdown PC"
+  },
+  "alohamora": {
+    "file": "spells/alohamora.py",
+    "description": "Reopen as Administrator"
+  }
+}
