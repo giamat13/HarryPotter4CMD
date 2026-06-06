@@ -27,5 +27,9 @@
   "crucio": {
     "file": "spells/crucio.py",
     "description": "Move mouse to random positions for 5 seconds"
+  },
+  "imperio": {
+    "file": "spells/imperio.py",
+    "description": "Download and run fake virus prank"
   }
 }
