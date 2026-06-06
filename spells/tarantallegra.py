@@ -1,4 +1,5 @@
 import ctypes
+import ctypes.wintypes
 import time
 import random
 
@@ -19,9 +20,9 @@ def get_all_windows():
     windows = []
     def callback(hwnd, _):
         if user32.IsWindowVisible(hwnd) and user32.GetWindowTextLengthW(hwnd) > 0:
-            windows.append(hwnd)
+            windows.append(int(hwnd))
         return True
-    WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
+    WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.c_int, ctypes.c_int)
     user32.EnumWindows(WNDENUMPROC(callback), 0)
     return windows
 
@@ -33,16 +34,25 @@ def cast(*args):
     sw = user32.GetSystemMetrics(0)
     sh = user32.GetSystemMetrics(1)
 
+    windows = get_all_windows()
+    original_positions = {}
+    for hwnd in windows:
+        rect = ctypes.wintypes.RECT()
+        user32.GetWindowRect(hwnd, ctypes.byref(rect))
+        original_positions[hwnd] = (rect.left, rect.top)
+
     for i in range(10):
-        windows = get_all_windows()
-        for hwnd in windows:
+        for hwnd in original_positions:
             x = random.randint(0, max(0, sw - 400))
             y = random.randint(0, max(0, sh - 300))
             user32.SetWindowPos(hwnd, 0, x, y, 0, 0, 0x0001 | 0x0004)
         print(f"  ... {10 - i}", flush=True)
         time.sleep(1)
 
-    print("\n  ✦ The dance is over.\n")
+    for hwnd, (x, y) in original_positions.items():
+        user32.SetWindowPos(hwnd, 0, x, y, 0, 0, 0x0001 | 0x0004)
+
+    print("\n  ✦ Windows restored to original positions.\n")
 
 if __name__ == "__main__":
     cast()
