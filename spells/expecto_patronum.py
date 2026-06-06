@@ -21,10 +21,15 @@ def is_admin():
     except:
         return False
 
+def get_exe_path():
+    """Return the EXE path when frozen, or None when running as .py"""
+    if getattr(sys, 'frozen', False):
+        return sys.executable  # HP.exe
+    return None
+
 def cast(*args):
     print(INTRO)
 
-    # Determine scan type from args
     scan_type = args[0].lower() if args else "quick"
     valid = {"quick", "full", "custom"}
     if scan_type not in valid:
@@ -32,8 +37,8 @@ def cast(*args):
         scan_type = "quick"
 
     scan_flags = {
-        "quick": "-Scan -ScanType 1",
-        "full":  "-Scan -ScanType 2",
+        "quick":  "-Scan -ScanType 1",
+        "full":   "-Scan -ScanType 2",
         "custom": "-Scan -ScanType 3",
     }
 
@@ -45,15 +50,22 @@ def cast(*args):
         return
 
     if not is_admin():
-        print("  [!] A Patronus requires great power — please run as Administrator.")
-        print("  [?] Tip: use 'alohamora' first to elevate privileges.\n")
-        # Re-launch elevated
-        ctypes.windll.shell32.ShellExecuteW(
-            None, "runas",
-            sys.executable,
-            f'"{os.path.abspath(__file__)}" {scan_type}',
-            None, 1
-        )
+        print("  [!] A Patronus requires great power — elevating privileges...\n")
+        exe = get_exe_path()
+        if exe:
+            # Running as EXE — re-launch HP.exe elevated with the spell args
+            ctypes.windll.shell32.ShellExecuteW(
+                None, "runas", exe,
+                f"expecto-patronum {scan_type}",
+                None, 1
+            )
+        else:
+            # Running as .py — re-launch python elevated
+            ctypes.windll.shell32.ShellExecuteW(
+                None, "runas", sys.executable,
+                f'"{os.path.abspath(__file__)}" {scan_type}',
+                None, 1
+            )
         return
 
     print(f"  [*] Summoning your Patronus... ({scan_type} scan)\n")

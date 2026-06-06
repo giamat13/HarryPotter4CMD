@@ -1,4 +1,7 @@
 __pycache__/
+
+# PyInstaller
+_MEI*/
 dist/
 build/
-HP.spec
+*.spec

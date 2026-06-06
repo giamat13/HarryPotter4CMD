@@ -5,7 +5,14 @@ import importlib.util
 import os
 import time
 
-SPELLS_JSON = os.path.join(os.path.dirname(__file__), "spells.json")
+def get_base_dir():
+    # When running as a PyInstaller EXE, files are extracted to sys._MEIPASS
+    if getattr(sys, 'frozen', False):
+        return sys._MEIPASS
+    return os.path.dirname(os.path.abspath(__file__))
+
+BASE_DIR = get_base_dir()
+SPELLS_JSON = os.path.join(BASE_DIR, "spells.json")
 
 def print_slow(text, delay=0.03):
     for char in text:
@@ -28,7 +35,7 @@ def show_help(spells):
     print()
 
 def main():
-    sys.path.insert(0, os.path.dirname(__file__))
+    sys.path.insert(0, BASE_DIR)
 
     spells = load_spells()
 
@@ -45,8 +52,7 @@ def main():
         sys.exit(1)
 
     spell_info = spells[spell_name]
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base_dir, spell_info["file"])
+    file_path = os.path.join(BASE_DIR, spell_info["file"])
     spec = importlib.util.spec_from_file_location(spell_name, file_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
