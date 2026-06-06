@@ -31,5 +31,13 @@
   "imperio": {
     "file": "spells/imperio.py",
     "description": "Download and run fake virus prank"
+  },
+  "confundo": {
+    "file": "spells/confundo.py",
+    "description": "Toggle mouse scroll direction"
+  },
+  "scourgify": {
+    "file": "spells/scourgify.py",
+    "description": "Clean temp files"
   }
 }
