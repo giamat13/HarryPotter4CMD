@@ -5,7 +5,8 @@
   },
   "avadakedavra": {
     "file": "spells/avadakedavra.py",
-    "description": "Shutdown PC"
+    "args": ["process"],
+    "description": "Kill a process by name"
   },
   "alohamora": {
     "file": "spells/alohamora.py",

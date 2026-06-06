@@ -1,5 +1,5 @@
 import subprocess
-import time
+import sys
 
 INTRO = r"""
    .    .    .         .    .     .
@@ -12,16 +12,23 @@ INTRO = r"""
 
 """
 
-def cast():
+def cast(*args):
     print(INTRO)
-    time.sleep(1)
-    print("  [!!!] THE KILLING CURSE!")
-    print("  [!!!] PC will shut down in 10 seconds...")
-    print()
-    for i in range(10, 0, -1):
-        print(f"  ... {i}", flush=True)
-        time.sleep(1)
-    subprocess.run(
-        'shutdown /s /t 0 /c "Avada Kedavra was cast. There is no coming back."',
-        shell=True
+    if not args:
+        print("  [!] Usage: avadakedavra <process>")
+        print("  [!] Example: avadakedavra notepad.exe")
+        return
+
+    process = args[0]
+    print(f"  [!!!] THE KILLING CURSE!")
+    print(f"  [!!!] Killing '{process}'...\n")
+    result = subprocess.run(
+        f'taskkill /F /IM {process}',
+        shell=True,
+        capture_output=True,
+        text=True
     )
+    if result.returncode == 0:
+        print(f"  ✦ '{process}' has been vanquished.")
+    else:
+        print(f"  [!] Failed: {result.stderr.strip()}")
