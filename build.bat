@@ -1,0 +1,1 @@
+pyinstaller --onefile --add-data "spells.json;." --add-data "spells;spells" --hidden-import=ctypes --hidden-import=socket --hidden-import=subprocess --hidden-import=platform --hidden-import=urllib.request --hidden-import=time --hidden-import=random --runtime-tmpdir . -n HP main.py
