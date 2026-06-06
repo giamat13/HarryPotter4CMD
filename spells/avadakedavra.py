@@ -18,8 +18,6 @@ def cast():
     print("  [!!!] THE KILLING CURSE!")
     print("  [!!!] PC will shut down in 10 seconds...")
     print()
-    print("  Cast PROTEGO (hp protego) to cancel!")
-    print()
     for i in range(10, 0, -1):
         print(f"  ... {i}", flush=True)
         time.sleep(1)
