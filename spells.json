@@ -34,10 +34,22 @@
   },
   "confundo": {
     "file": "spells/confundo.py",
-    "description": "Toggle mouse scroll direction"
+    "description": "Swap mouse buttons for 10 seconds"
   },
   "scourgify": {
     "file": "spells/scourgify.py",
     "description": "Clean temp files"
+  },
+  "finite-incantatem": {
+    "file": "spells/finite_incantatem.py",
+    "description": "Cancel all active curses"
+  },
+  "tarantallegra": {
+    "file": "spells/tarantallegra.py",
+    "description": "Move all windows to random positions for 10 seconds"
+  },
+  "revelio": {
+    "file": "spells/revelio.py",
+    "description": "Show system info (OS, RAM, Disk)"
   }
 }
