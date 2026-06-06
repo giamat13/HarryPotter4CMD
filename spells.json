@@ -11,5 +11,21 @@
   "alohamora": {
     "file": "spells/alohamora.py",
     "description": "Reopen as Administrator"
+  },
+  "petrificus-totalus": {
+    "file": "spells/petrificus_totalus.py",
+    "description": "Lock screen"
+  },
+  "homenum-revelio": {
+    "file": "spells/homenum_revelio.py",
+    "description": "Show all devices on local network"
+  },
+  "riddikulus": {
+    "file": "spells/riddikulus.py",
+    "description": "Show a random joke from the API"
+  },
+  "crucio": {
+    "file": "spells/crucio.py",
+    "description": "Move mouse to random positions for 5 seconds"
   }
 }
