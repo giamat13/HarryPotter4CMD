@@ -1,7 +1,24 @@
-__pycache__/
-
 # PyInstaller
 _MEI*/
 dist/
 build/
 *.spec
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
