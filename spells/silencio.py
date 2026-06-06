@@ -1,8 +1,21 @@
 import ctypes
 import platform
 
+INTRO = r"""
+   .    .    .         .    .     .
+
+.    .    __________________________________
+  .      /                                  \
+    .   |      ✦  S I L E N C I O  !   |
+  .      \__________________________________/
+     .        .    .    .       .
+
+"""
+
 def cast():
     """Silence the computer (mute volume)"""
+    print(INTRO)
+
     if platform.system() != "Windows":
         print("✗ Silencio only works on Windows")
         return

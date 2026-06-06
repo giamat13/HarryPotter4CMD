@@ -2,8 +2,21 @@ import ctypes
 import platform
 import time
 
+INTRO = r"""
+   .    .    .         .    .     .
+
+.    .    __________________________________
+  .      /                                  \
+    .   |      ✦  S O N O R U S  !   |
+  .      \__________________________________/
+     .        .    .    .       .
+
+"""
+
 def cast():
     """Increase volume to maximum"""
+    print(INTRO)
+
     if platform.system() != "Windows":
         print("✗ Sonorus only works on Windows")
         return
