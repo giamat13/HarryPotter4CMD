@@ -51,5 +51,10 @@
   "revelio": {
     "file": "spells/revelio.py",
     "description": "Show system info (OS, RAM, Disk)"
+  },
+  "expecto-patronum": {
+    "file": "spells/expecto_patronum.py",
+    "args": ["scan_type"],
+    "description": "Run Windows Defender antivirus scan (quick/full/custom)"
   }
 }
